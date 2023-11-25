@@ -5,6 +5,7 @@ Note: Some guides mistakenly claim that SimCity 4 has its own different encoding
 ## Header Formats
 
 Note: The flag bits for the byte preceding 0xFB are not all known. There are likely a variety of options used out there.
+
 Note: 0xFB likely stands for Frank Barchard.
 
 **Header 1 (90s Games):**
