@@ -8,7 +8,7 @@ Note: Some guides mistakenly claim that SimCity 4 has its own different encoding
 
 2 bytes int magic header (0x10FB)
 
-3 bytes int decompressed size (big endian)
+3 bytes int uncompressed size (big endian)
 
 **Header 2 (Early 2000s Games):** The Sims 1, The Sims Online, SimCity 4, and The Sims 2
 
@@ -16,7 +16,7 @@ Note: Some guides mistakenly claim that SimCity 4 has its own different encoding
 
 2 bytes int magic header (0x10FB)
 
-3 bytes int decompressed size (big endian)
+3 bytes int uncompressed size (big endian)
 
 **Header 3 (Late 2000s Games - Now):** Spore, The Sims 3, and The Sims 4
 
@@ -30,7 +30,7 @@ bit 0x00000010: Always set to 1
 
 1 byte magic (0xFB)
 
-3-4 bytes int decompressed size: the number of bytes depends on the flag above (big endian) 
+3-4 bytes int uncompressed size: the number of bytes depends on the flag above (big endian) 
 
 ## Decompression:
 
