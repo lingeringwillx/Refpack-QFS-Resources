@@ -13,7 +13,7 @@ Resources for those interested in learning about the Refpack/QFS compression alg
 
 [ModTheSims](https://modthesims.info/wiki.php?title=DBPF/Compression): Information about the compression algorithm
 
-[How to Compress](https://github.com/lingeringwillx/CrappySims2Compression/blob/main/how-to-compress.md): I tried to explain the compression algorithm here.
+[How to Compress](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md): I tried to explain the compression algorithm here.
 
 #### Archieve Formats
 
