@@ -1,7 +1,7 @@
 ## Refpack/QFS Resources
 Resources for those interested in learning about the Refpack/QFS compression algorithm used in many EA games
 
-#### Information
+#### Compression
 
 [Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression.
 
