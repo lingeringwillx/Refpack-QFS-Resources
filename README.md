@@ -1,9 +1,7 @@
 ## Refpack/QFS Resources
 Resources for those interested in learning about the Refpack/QFS compression algorithm used in many EA games
 
-### Resources
-
-#### Compression
+### Compression
 
 [Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression.
 
@@ -25,7 +23,7 @@ Resources for those interested in learning about the Refpack/QFS compression alg
 
 [DBPF 2](https://modthesims.info/wiki.php?title=Sims_3:DBPF): for The Sims 3
 
-### Implementations
+#### Implementations
 
 List of known implementations of the compression algorithm organized by language and [compression header]() for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
 
