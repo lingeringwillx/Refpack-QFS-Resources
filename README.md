@@ -26,7 +26,7 @@ The longer length and offset capacity of the compression slows down the compress
 
 [ModTheSims](https://modthesims.info/wiki.php?title=DBPF/Compression): Information about the compression algorithm.
 
-#### Archieve Formats
+#### Archive Formats
 
 [FAR](http://wiki.niotso.org/FAR): for The Sims 1
 
