@@ -54,4 +54,4 @@ List of known implementations of the compression algorithm organized by language
 
 **C Bindings
 
-[C++ Reference Implementation by EA](http://download.wcnews.com/files/documents/sourcecode/shadowforce/transfer/asommers/mfcapp_src/engine/compress/RefPack.cpp)
+[Reference Implementation by EA](http://download.wcnews.com/files/documents/sourcecode/shadowforce/transfer/asommers/mfcapp_src/engine/compress/RefPack.cpp)
