@@ -22,13 +22,15 @@ Note: Some guides mistakenly claim that SimCity 4 has its own different encoding
 
 1 bytes flags:
 
-Bit 0x10000000: 4 bytes are used for the decompressed size if enabled, 3 bytes are used if disabled
-Bit 0x01000000: No longs encoded in compressed stream (Note: Need to double check this)
-Bit 0x00000010: Always set to 1
+bit 0x10000000: 4 bytes are used for the decompressed size if enabled, 3 bytes are used if disabled
+
+bit 0x01000000: No longs encoded in compressed stream (Note: Need to double check this)
+
+bit 0x00000010: Always set to 1
 
 1 byte magic (0xFB)
 
-3-4 bytes int decompressed size: number of bytes depends on the flag above (big endian) 
+3-4 bytes int decompressed size: the number of bytes depends on the flag above (big endian) 
 
 ## Decompression:
 
