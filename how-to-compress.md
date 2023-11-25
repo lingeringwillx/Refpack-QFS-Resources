@@ -26,7 +26,7 @@ bit 0x10000000: 4 bytes are used for the decompressed size if enabled, 3 bytes a
 
 bit 0x01000000: No longs encoded in compressed stream (Note: Need to double check this)
 
-bit 0x00000010: Always set to 1
+bit 0x00010000: Always set to 1
 
 1 byte magic (0xFB)
 
