@@ -24,7 +24,7 @@ The longer length and offset capacity of the compression slows down the compress
 
 [How to Compress](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md): I tried to explain the compression algorithm here.
 
-[ModTheSims](https://modthesims.info/wiki.php?title=DBPF/Compression): Information about the compression algorithm.
+[ModTheSims](https://modthesims.info/wiki.php?title=DBPF/Compression): Information about the compression algorithm. Has some mistakes.
 
 #### Archive Formats
 
