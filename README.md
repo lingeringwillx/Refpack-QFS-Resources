@@ -22,9 +22,9 @@ The longer length and offset capacity of the compression slows down the compress
 
 [Explanation of zlib](https://www.euccas.me/zlib/): zlib is a popular compression library and a lot of the techniques employed in zlib are utilized in Refpack/QFS compression code.
 
-[ModTheSims](https://modthesims.info/wiki.php?title=DBPF/Compression): Information about the compression algorithm.
-
 [How to Compress](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md): I tried to explain the compression algorithm here.
+
+[ModTheSims](https://modthesims.info/wiki.php?title=DBPF/Compression): Information about the compression algorithm.
 
 #### Archieve Formats
 
