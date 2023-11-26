@@ -77,7 +77,7 @@ The following bit operations can be applied to get the numbers that we need:
 ```C
 //Bits: 0oocccpp oooooooo
 
-plain = b0 & 0x03 //0-3 (mask off)
+literal = b0 & 0x03 //0-3 (mask off)
 count = ((b0 & 0x1C) >> 2) + 3 //3-11 ((mask off & shift right b0) + 3)
 offset: ((b0 & 0x60) << 3) + b1 + 1 //1-1024 ((mask off & shift left b0) + b1 + 1)
 ```
@@ -89,7 +89,7 @@ Has three control characters.
 ```C
 //Bits: 10cccccc ppoooooo oooooooo
 
-plain = ((b1 & 0xC0) >> 6 //0-3 (mask off & shift right b1)
+literal = ((b1 & 0xC0) >> 6 //0-3 (mask off & shift right b1)
 count = (b0 & 0x3F) + 4 //4-67 (mask off b1 + 4)
 offset = ((b1 & 0x3F) << 8) + b2 + 1 //1-16384 ((mask off & shift left b1) + b2 + 1)
 ```
@@ -101,7 +101,7 @@ Has four control characters.
 ```C
 //Bits: 110occpp oooooooo oooooooo cccccccc
 
-plain = b0 & 0x03 //0-3 (mask off)
+literal = b0 & 0x03 //0-3 (mask off)
 count = ((b0 & 0x0C) << 6) + b3 + 5 //5-1028 ((mask off & shift left b0) + b3 + 5)
 offset: ((b0 & 0x10) << 12) + (b1 << 8) + b2 + 1 //1-131072 ((mask off & shift left b0) + (shift left b1) + b2 + 1)
 ```
@@ -112,7 +112,7 @@ Has only one control character. This one only involves literal/plain copy with n
 ```C
 //Bits: 111ppp00
 
-plain = ((b0 & 0x1F) << 2) + 4 //4-112 ((mask off & shift left b0) + 4)
+literal = ((b0 & 0x1F) << 2) + 4 //4-112 ((mask off & shift left b0) + 4)
 count = 0
 offset = 0
 ```
@@ -124,7 +124,7 @@ Has only one control character. This is used for the remaining portion of the co
 ```C
 //Bits: Bits: 111111pp
 
-plain = b0 & 0x03 //0-3 (mask off b0)
+literal = b0 & 0x03 //0-3 (mask off b0)
 copy = 0
 offset = 0
 ```
@@ -151,7 +151,7 @@ Typical structure of compressed data: `control_characters literals_from_decompre
 
 #### Control Characters
 
-Note: In most modder code the subtraction for the offset (offset - 1) is done before the bit operations.
+Subtract the offset by 1 before before encoding it: `offset = offset - 1`. This is a part of the transformations applied to the offset.
 
 Bit operation are usually done to mask off unrelated bits or shift the values to a specific position. Addition and subtraction are done because they allow the algorithm to encode a few more bytes compared to if it didn't.
 
@@ -162,9 +162,9 @@ The minimum length for the matching pattern should be 3 (otherwise this compress
 ```C
 //Bits: 0oocccpp oooooooo
 
-// 0 <= plain <= 3, 3 <= count <= 10, 1 <= offset <= 1024
-b0 = (((offset - 1) >> 3) & 0x60) + ((count - 3) << 2) + plain // (shift right & mask off (offset - 1)) + (shift left (count - 3))
-b1 = offset - 1 // first 8 bits of (offset - 1)
+// 0 <= literal <= 3, 3 <= count <= 10, 1 <= offset <= 1024
+b0 = ((offset >> 3) & 0x60) + ((count - 3) << 2) + literal // (shift right & mask off offset) + (shift left (count - 3))
+b1 = offset - 1 // first 8 bits of offset
 ```
 
 #### Medium
@@ -174,10 +174,10 @@ The minimum length for the matching pattern should be 4 (otherwise this compress
 ```C
 //Bits: 10cccccc ppoooooo oooooooo
 
-// 0 <= plain <= 3, 4 <= count <= 67, 1 <= offset <= 16384
+// 0 <= literal <= 3, 4 <= count <= 67, 1 <= offset <= 16384
 b0 = 0x80 + (count - 4) // mask on bit 1 + (count - 4)
-b1 = (plain << 6) + ((offset - 1) >> 8) // shift plain left + shift (offset - 1) right
-b2 = offset - 1 // first 8 bits of (offset - 1)
+b1 = (literal << 6) + (offset >> 8) // shift literal left + shift offset right
+b2 = offset - 1 // first 8 bits of offset
 ```
 
 #### Long
@@ -187,10 +187,10 @@ The minimum length for the matching pattern should be 5 (otherwise this compress
 ```C
 //Bits: 110occpp oooooooo oooooooo cccccccc
 
-// 0 <= plain <= 3, 5 <= count <= 1028, 1 <= offset <= 131072
-b0 = 0xC0 + (((offset - 1) >> 12) & 0x10) + ((count - 5) >> 6) & 0x0C) + plain // (mask on bit 1-2 + (shift right & mask off (offset - 1)) + (shift right & mask off (count - 5)) + plain
-b1 = (offset - 1) >> 8 // shift right (offset - 1)
-b2 = (offset - 1) // first 8 bits of (offset - 1)
+// 0 <= literal <= 3, 5 <= count <= 1028, 1 <= offset <= 131072
+b0 = 0xC0 + ((offset >> 12) & 0x10) + ((count - 5) >> 6) & 0x0C) + literal // (mask on bit 1-2 + (shift right & mask off offset) + (shift right & mask off (count - 5)) + literal
+b1 = offset >> 8 // shift right offset
+b2 = offset // first 8 bits of offset
 b3 = count - 5 // first 8 bits of (count - 5)
 ```
 #### Literal
@@ -202,8 +202,8 @@ Note: This must be a multiple of four due to the 2 bit right shift truncating th
 ```C
 //Bits: 111ppp00
 
-// 4 <= plain <= 112, count = 0, offset = 0
-b0 = 0xE0 + ((plain - 4) >> 2) // mask on bits 1-3 + (shift right (plain - 4))
+// 4 <= literal <= 112, count = 0, offset = 0
+b0 = 0xE0 + ((literal - 4) >> 2) // mask on bits 1-3 + (shift right (literal - 4))
 ```
 
 #### EOF
@@ -213,6 +213,6 @@ Added to the end of the compressed data if you still need to add 1-3 bytes to be
 ```C
 //Bits: Bits: 111111pp
 
-// 0 <= plain <= 3, count = 0, offset = 0
-b0 = 0xFC + plain // mask on bits 1-6
+// 0 <= literal <= 3, count = 0, offset = 0
+b0 = 0xFC + literal // mask on bits 1-6
 ```
