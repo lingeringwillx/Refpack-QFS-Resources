@@ -38,12 +38,14 @@ The longer length and offset capacity of the compression slows down the compress
 
 List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md#header-formats) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
 
+It's not hard to convert any header format to the other, however libraries that support the header that you want should be easier to use.
+
 | Language | Header 1 | Header 2 | Header 3 |
 |-|:-:|:-:|:-:|
 | C | [Denis Auroux](https://math.mit.edu/~auroux/software/fshtool.zip) | [benrg](http://www.moreawesomethanyou.com/smf/index.php/topic,8279.0.html) ||
 | C# | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[gibbed](https://github.com/gibbed/Gibbed.RefPack) | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Afr0](https://github.com/riperiperi/FreeSO/blob/master/Other/tools/SimsLib/SimsLib/FAR3/Decompresser.cs)<br>[ambertation](https://github.com/luki122/simpe/blob/master/fullsimpe/SimPe%20Packages/PackedFile.cs) | [pljones & Tiger](https://sourceforge.net/p/s3pi/git/ci/master/tree/s3pi/Package/Compression.cs) |
 | C++ | [KUDr](https://github.com/MicaelJarniac/RefPack-Tool) | [lingeringwillx](https://github.com/lingeringwillx/CrappySims2Compression/tree/main/practice) | [J.M. Pescado](https://gist.github.com/uyjulian/bd24b98a4c97b775c9ab) |
-| Go || [marcboudreau](https://github.com/marcboudreau/godbpf/blob/master/qfs/qfs.go) ||
+| Go | [marcboudreau](https://github.com/marcboudreau/godbpf/blob/master/qfs/qfs.go) |||
 | Java || [java_dwarf](https://github.com/memo33/jDBPFX/blob/master/src/jdbpfx/util/DBPFPackager.java) ||
 | JavaScript | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) ||
 | PHP || [Delphy](https://modthesims.info/wiki.php?title=DBPF_Compression#Example_Code)* ||
