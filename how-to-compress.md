@@ -1,3 +1,5 @@
+## How to Compress
+
 Various headers for the compressed data have been found in EA's games, but the way to encode and decode the stream is the same throughout all of these games.
 
 Note: Some guides mistakenly claim that SimCity 4 has its own different encoding. This is wrong.
