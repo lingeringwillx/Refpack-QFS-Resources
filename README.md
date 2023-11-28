@@ -38,8 +38,6 @@ The longer length and offset capacity of the compression slows down the compress
 
 List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md#header) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
 
-It's possible to convert any header format to another format. However, libraries that support the header format that you want should be easier to use.
-
 | Language | Header 1 | Header 2 | Header 3 |
 |-|:-:|:-:|:-:|
 | C | [Denis Auroux](https://math.mit.edu/~auroux/software/fshtool.zip) |||
