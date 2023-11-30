@@ -4,7 +4,7 @@ Resources for those interested in the Refpack/QFS compression algorithm used in 
 
 #### About
 
-Refpack/QFS is a compression algorithm based on the LZ77/LZSS compression by Frank Barchard for use in games made by EA.
+Refpack/QFS is a compression algorithm based on the LZ77/LZSS compression by Frank Barchard for use in games made by EA. The compression can be found in games as early as FIFA International Soccer (1993).
 
 The main destinction between QFS and LZSS is that the compression has it's own unique way of encoding tokens/control characters, which has a varying length of between 1 to 4 bytes. It also allows fof a much longer length and offset to be encoded.
 
