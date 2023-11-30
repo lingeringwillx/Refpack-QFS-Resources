@@ -10,13 +10,38 @@ Note: The flag bits for the byte preceding 0xFB are not all known. There are lik
 
 Note: 0xFB likely stands for Frank Barchard.
 
-**Header 1 (90s Games):**
+Note: In older headers, the uncompressed size is stored in a 3 bytes integer. The compression is pretty old so it's likely thay they assumed that 3 bytes is enough for storing compressed files.
 
-2 bytes int magic header (0x10FB)
+Note: The uncompressed size is stored in big endian even in games that natively use little endian, likely for the sake of remaining consistent with the algorithm's standard.
+
+Note: I have not seen the 0x01 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
+
+#### Header 1 (90s Games)
+
+1 byte flags:
+
+bit 0x00010000: Always set
+
+bit 0x00000001: compressed size added to header
+
+1 byte magic: 0xFB
+
+if flag 0x00000001 set: 3 bytes int compressed size (big endian)
 
 3 bytes int uncompressed size (big endian)
 
-**Header 2 (Early 2000s Games):** The Sims 1, The Sims Online, SimCity 4, and The Sims 2
+According to [Martin Korth](https://problemkaputt.de/psxspx-cdrom-file-compression-ea-methods.htm), other flags can be found in some games containing the magic character 0xFB in the header. These however indicate that the compression used is not a RefPack compression:
+
+| Header Magic | Compression |
+|-|-|
+| 0x30FB, 0x32FB, 0x34FB | Huffman Encoding |
+| 0x46FB | Byte-Pair Encoding |
+| 0x4AFB | Run-Length Encoding |
+| 0xC0FB | File Archieve (Not a compression) |
+
+#### Header 2 (Early 2000s Games)
+
+Found in: The Sims Online, SimCity 4, and The Sims 2
 
 4 bytes int compressed size (little endian)
 
@@ -24,7 +49,9 @@ Note: 0xFB likely stands for Frank Barchard.
 
 3 bytes int uncompressed size (big endian)
 
-**Header 3 (Late 2000s Games - Now):** Spore, The Sims 3, and The Sims 4
+#### Header 3 (Late 2000s Games - Now)
+
+Found in: Spore, The Sims 3, and The Sims 4
 
 1 bytes flags:
 
@@ -32,11 +59,19 @@ bit 0x10000000: 4 bytes are used for the decompressed size if enabled, 3 bytes a
 
 bit 0x01000000: No longs encoded in compressed stream (Note: Need to double check this)
 
-bit 0x00010000: Always set to 1
+bit 0x00010000: Always set
 
-1 byte magic (0xFB)
+bit 0x00000001: compressed size added to header
 
-3-4 bytes int uncompressed size: the number of bytes depends on the flag above (big endian) 
+1 byte magic: 0xFB
+
+if flags 0x1000001 set: 4 bytes int compressed size (big endian)
+
+else if flags 0x00000001 set: 3 bytes int compressed size (big endian)
+
+if flag 0x1000000 set: 4 bytes uncompressed size (big endian)
+
+else: 3 bytes uncompressed size (big endian)
 
 ## Compression
 
