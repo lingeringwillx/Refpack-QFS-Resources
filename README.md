@@ -1,6 +1,6 @@
 ## Refpack/QFS Resources
 
-Resources for those interested in the Refpack/QFS compression algorithm used in many EA games.
+Resources for those interested in the Refpack/QFS compression algorithm used in many EA games. Also maintains links to known implementations of the compression for easy reference.
 
 #### About
 
@@ -42,10 +42,11 @@ List of known implementations of the compression algorithm organized by language
 |-|:-:|:-:|:-:|
 | C | [Denis Auroux](https://math.mit.edu/~auroux/software/fshtool.zip) |||
 | C# | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[gibbed](https://github.com/gibbed/Gibbed.RefPack) | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Afr0](https://github.com/riperiperi/FreeSO/blob/master/Other/tools/SimsLib/SimsLib/FAR3/Decompresser.cs)<br>[ambertation](https://github.com/luki122/simpe/blob/master/fullsimpe/SimPe%20Packages/PackedFile.cs) | [pljones & Tiger](https://sourceforge.net/p/s3pi/git/ci/master/tree/s3pi/Package/Compression.cs) |
-| C++ | [KUDr](https://github.com/MicaelJarniac/RefPack-Tool) | [benrg](http://www.moreawesomethanyou.com/smf/index.php/topic,8279.0.html)<br>[lingeringwillx](https://github.com/lingeringwillx/CrappySims2Compression/tree/main/practice) | [J.M. Pescado](https://gist.github.com/uyjulian/bd24b98a4c97b775c9ab) |
+| C++ | [KUDr](https://github.com/MicaelJarniac/RefPack-Tool) | [benrg](http://www.moreawesomethanyou.com/smf/index.php/topic,8279.0.html)<br>[lingeringwillx](https://github.com/lingeringwillx/CrappySims2Compression/tree/main/practice) | [OmniBlade](https://github.com/TheAssemblyArmada/Thyme/blob/develop/src/game/common/compression/refpack.cpp)<br>[J.M. Pescado](https://gist.github.com/uyjulian/bd24b98a4c97b775c9ab) |
 | Go | [marcboudreau](https://github.com/marcboudreau/godbpf/blob/master/qfs/qfs.go) |||
 | Java || [java_dwarf](https://github.com/memo33/jDBPFX/blob/master/src/jdbpfx/util/DBPFPackager.java) ||
 | JavaScript | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) ||
+| Kotlin | [DarkAtra](https://github.com/DarkAtra/bfme2-modding-utils/blob/main/refpack/src/main/kotlin/de/darkatra/bfme2/refpack/RefPackInputStream.kt) |||
 | PHP || [Delphy](https://modthesims.info/wiki.php?title=DBPF_Compression#Example_Code)* ||
 | Python || [lah7](https://github.com/lah7/sims2-4k-ui-mod/blob/master/qfs.py)<br>[lingeringwillx](https://github.com/lingeringwillx/sims2lib/blob/main/dbpf.py)** ||
 | Rust || [actioninja](https://github.com/actioninja/refpack-rs) | [actioninja](https://github.com/actioninja/refpack-rs) |
