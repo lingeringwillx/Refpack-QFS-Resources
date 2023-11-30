@@ -53,11 +53,11 @@ Found in: The Sims Online, SimCity 4, and The Sims 2
 
 Found in: Spore, The Sims 3, and The Sims 4
 
-1 bytes flags:
+1 byte flags:
 
 bit 0x10000000: 4 bytes are used for the decompressed size if enabled, 3 bytes are used if disabled
 
-bit 0x01000000: No longs encoded in compressed stream (Note: Need to double check this)
+bit 0x01000000: Restricted sliding window (Note: Need to double check this)
 
 bit 0x00010000: Always set
 
@@ -65,11 +65,11 @@ bit 0x00000001: compressed size added to header
 
 1 byte magic: 0xFB
 
-if flags 0x1000001 set: 4 bytes int compressed size (big endian)
+if flags 0x10000001 set: 4 bytes int compressed size (big endian)
 
-else if flags 0x00000001 set: 3 bytes int compressed size (big endian)
+else if flag 0x00000001 set: 3 bytes int compressed size (big endian)
 
-if flag 0x1000000 set: 4 bytes uncompressed size (big endian)
+if flag 0x10000000 set: 4 bytes uncompressed size (big endian)
 
 else: 3 bytes uncompressed size (big endian)
 
