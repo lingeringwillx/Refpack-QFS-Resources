@@ -37,7 +37,7 @@ According to [Martin Korth](https://problemkaputt.de/psxspx-cdrom-file-compressi
 | 0x30FB, 0x32FB, 0x34FB | Huffman Encoding |
 | 0x46FB | Byte-Pair Encoding |
 | 0x4AFB | Run-Length Encoding |
-| 0xC0FB | File Archieve (Not a compression) |
+| 0xC0FB | File Archive (Not a compression) |
 
 #### Header 2 (Early 2000s Games)
 
