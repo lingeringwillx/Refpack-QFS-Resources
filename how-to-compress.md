@@ -32,12 +32,12 @@ if flag 0b00000001 set: 3 bytes int compressed size (big endian)
 
 According to [Martin Korth](https://problemkaputt.de/psxspx-cdrom-file-compression-ea-methods.htm), other files can be found in some games containing the magic character 0xFB in the header. However, these flags indicate that the compression used is not RefPack:
 
-| Header Magic | Compression |
+| Flag | Compression |
 |-|-|
-| 0x30FB, 0x32FB, 0x34FB | Huffman Encoding |
-| 0x46FB | Byte-Pair Encoding |
-| 0x4AFB | Run-Length Encoding |
-| 0xC0FB | File Archive (Not a compression) |
+| 0x30, 0x32, 0x34 | Huffman Encoding |
+| 0x46 | Byte-Pair Encoding |
+| 0x4A | Run-Length Encoding |
+| 0xC0 | File Archive (Not a compression) |
 
 #### Header 2 (Early 2000s Games)
 
