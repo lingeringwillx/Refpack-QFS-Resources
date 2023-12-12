@@ -107,7 +107,7 @@ Subtract the offset by 1 before before doing anything with it. This is a part of
 
 `offset = offset - 1`
 
-Bit operation are usually done to mask off unrelated bits or shift the values to a specific position. Addition and subtraction are done because they allow the algorithm to encode a few more bytes compared to if it didn't.
+Bit operation are usually done to mask off unrelated bits or shift the values to a specific position. Addition and subtraction are done because they allow the algorithm to encode a few more bytes compared to if it didn't. Addition and subtraction could also be used to switch certain bits on or off.
 
 #### Short
 
@@ -129,7 +129,7 @@ The minimum length for the matching pattern should be 4 (otherwise this compress
 //Bits: 10cccccc ppoooooo oooooooo
 // 0 <= literal <= 3, 4 <= count <= 67, 1 <= offset <= 16384
 
-b0 = 0x80 + (count - 4) // mask on bit 1 + (count - 4)
+b0 = 0x80 + (count - 4)
 b1 = (literal << 6) + (offset >> 8)
 b2 = offset
 ```
