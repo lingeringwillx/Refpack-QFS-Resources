@@ -117,7 +117,7 @@ The minimum length for the matching pattern should be 3 (otherwise this compress
 //Bits: 0oocccpp oooooooo
 // 0 <= literal <= 3, 3 <= count <= 10, 1 <= offset <= 1024
 
-b0 = ((offset >> 3) & 0x60) + ((count - 3) << 2) + literal
+b0 = ((offset >> 3) & 0b01100000) + ((copy - 3) << 2) + literal
 b1 = offset
 ```
 
@@ -129,7 +129,7 @@ The minimum length for the matching pattern should be 4 (otherwise this compress
 //Bits: 10cccccc ppoooooo oooooooo
 // 0 <= literal <= 3, 4 <= count <= 67, 1 <= offset <= 16384
 
-b0 = 0x80 + (count - 4)
+b0 = 0b10000000 + (copy - 4)
 b1 = (literal << 6) + (offset >> 8)
 b2 = offset
 ```
@@ -142,7 +142,7 @@ The minimum length for the matching pattern should be 5 (otherwise this compress
 //Bits: 110occpp oooooooo oooooooo cccccccc
 // 0 <= literal <= 3, 5 <= count <= 1028, 1 <= offset <= 131072
 
-b0 = 0xC0 + ((offset >> 12) & 0x10) + ((count - 5) >> 6) & 0x0C) + literal
+b0 = 0b11000000 + ((offset >> 12) & 0b00010000) + (((copy - 5) >> 6) & 0b00001100) + literal
 b1 = offset >> 8
 b2 = offset
 b3 = count - 5
@@ -157,7 +157,7 @@ Note: This must be a multiple of four due to the 2 bit right shift truncating th
 //Bits: 111ppp00
 // 4 <= literal <= 112, count = 0, offset = 0
 
-b0 = 0xE0 + ((literal - 4) >> 2)
+b0 = 0b11100000 + ((literal - 4) >> 2)
 ```
 
 #### EOF
@@ -168,7 +168,7 @@ Added to the end of the compressed data if you still need to add 1-3 bytes to be
 //Bits: Bits: 111111pp
 // 0 <= literal <= 3, count = 0, offset = 0
 
-b0 = 0xFC + literal
+b0 = 0b11111100 + literal
 ```
 
 ## Decompression:
@@ -212,9 +212,9 @@ The following bit operations can be applied to get the numbers that we need:
 ```C
 //Bits: 0oocccpp oooooooo
 
-literal = b0 & 0x03 //0-3
-count = ((b0 & 0x1C) >> 2) + 3 //3-11
-offset = ((b0 & 0x60) << 3) + b1 + 1 //1-1024
+literal = b0 & 0b00000011 //0-3
+count = ((b0 & 0b00011100) >> 2) + 3 //3-11
+offset = ((b0 & 0b01100000) << 3) + b1 + 1 //1-1024
 ```
 
 #### Medium (0x80 - 0xBF)
@@ -224,9 +224,9 @@ Has three control characters.
 ```C
 //Bits: 10cccccc ppoooooo oooooooo
 
-literal = ((b1 & 0xC0) >> 6 //0-3
-count = (b0 & 0x3F) + 4 //4-67
-offset = ((b1 & 0x3F) << 8) + b2 + 1 //1-16384
+literal = ((b1 & 0b11000000) >> 6 //0-3
+count = (b0 & 0b00111111) + 4 //4-67
+offset = ((b1 & 0b00111111) << 8) + b2 + 1 //1-16384
 ```
 
 #### Long (0xC0 - 0xDF)
@@ -236,9 +236,9 @@ Has four control characters.
 ```C
 //Bits: 110occpp oooooooo oooooooo cccccccc
 
-literal = b0 & 0x03 //0-3
-count = ((b0 & 0x0C) << 6) + b3 + 5 //5-1028
-offset = ((b0 & 0x10) << 12) + (b1 << 8) + b2 + 1 //1-131072
+literal = b0 & 0b00000011 //0-3
+count = ((b0 & 0b00001100) << 6) + b3 + 5 //5-1028
+offset = ((b0 & 0b00010000) << 12) + (b1 << 8) + b2 + 1 //1-131072
 ```
 #### Literal (0xE0 - 0xFB)
 
@@ -247,7 +247,7 @@ Has only one control character. This one only involves literal/plain copy with n
 ```C
 //Bits: 111ppp00
 
-literal = ((b0 & 0x1F) << 2) + 4 //4-112
+literal = ((b0 & 0b00011111) << 2) + 4 //4-112
 count = 0
 offset = 0
 ```
@@ -259,7 +259,7 @@ Has only one control character. This is used for the remaining portion of the co
 ```C
 //Bits: Bits: 111111pp
 
-literal = b0 & 0x03 //0-3
+literal = b0 & 0b00000011 //0-3
 copy = 0
 offset = 0
 ```
