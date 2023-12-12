@@ -191,9 +191,9 @@ b0 = 0b11111100 + literal
 
 5- Copy the number of bytes specified to be copied as is from the compressed data to the decompressed data.
 
-6- Go back to the offset in the decompressed data and copy the number of bytes specified to the end.
+6- Go back to the offset in the decompressed data and copy the number of bytes specified.
 
-Note: The copying in step 6 has to be done one byte at a time, otherwise decompression will be incorrect in cases when the offset is less than the length (The compression allows this).
+Note: The copying in step 6 has to be done one byte at a time, otherwise decompression will be incorrect in cases when the number of bytes to copy is larger than the offset (The compression allows this).
 
 Typical structure of decompressed data:
 
