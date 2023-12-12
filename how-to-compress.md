@@ -107,7 +107,7 @@ Typical structure of compressed data: `control_characters literals_from_decompre
 
 **literal/plain** = The number of bytes to copy from the compressed data as is.
 
-**offset** = The offset in the *decompressed* data to copy the bytes from (i.e. current position - offset).
+**offset** = The offset in the *decompressed* data to copy the bytes from (i.e. current position - match position).
 
 **count** = The number of bytes to copy from the offset in the *decompressed* data
 
