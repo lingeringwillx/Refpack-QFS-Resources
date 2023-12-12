@@ -8,7 +8,7 @@ Note: Some guides mistakenly claim that SimCity 4 has its own unique encoding. T
 
 Note: 0xFB likely stands for Frank Barchard.
 
-Note: In older headers, the uncompressed size is stored in a 3 bytes integer. The compression algorithm is pretty old so it's likely that they assumed that 3 bytes is enough for storing compressed files.
+Note: In older headers, the uncompressed size is stored in a 3 bytes integer. The compression algorithm is pretty old so it's likely that they assumed that 3 bytes is enough for storing the uncompressed size.
 
 Note: The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
 
