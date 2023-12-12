@@ -103,6 +103,14 @@ Typical structure of compressed data: `control_characters literals_from_decompre
 
 #### Control Characters
 
+**The three variables that we need to encode are:**
+
+**literal/plain** = The number of bytes to copy from the compressed data as is.
+
+**offset** = The offset in the *decompressed* data to copy the bytes from (i.e. current position - offset).
+
+**count** = The number of bytes to copy from the offset in the *decompressed* data
+
 Subtract the offset by 1 before before doing anything with it. This is a part of the transformations applied to the offset:
 
 `offset = offset - 1`
@@ -117,7 +125,7 @@ The minimum length for the matching pattern should be 3 (otherwise this compress
 //Bits: 0oocccpp oooooooo
 // 0 <= literal <= 3, 3 <= count <= 10, 1 <= offset <= 1024
 
-b0 = ((offset >> 3) & 0b01100000) + ((copy - 3) << 2) + literal
+b0 = ((offset >> 3) & 0b01100000) + ((count - 3) << 2) + literal
 b1 = offset
 ```
 
@@ -129,7 +137,7 @@ The minimum length for the matching pattern should be 4 (otherwise this compress
 //Bits: 10cccccc ppoooooo oooooooo
 // 0 <= literal <= 3, 4 <= count <= 67, 1 <= offset <= 16384
 
-b0 = 0b10000000 + (copy - 4)
+b0 = 0b10000000 + (count - 4)
 b1 = (literal << 6) + (offset >> 8)
 b2 = offset
 ```
@@ -142,7 +150,7 @@ The minimum length for the matching pattern should be 5 (otherwise this compress
 //Bits: 110occpp oooooooo oooooooo cccccccc
 // 0 <= literal <= 3, 5 <= count <= 1028, 1 <= offset <= 131072
 
-b0 = 0b11000000 + ((offset >> 12) & 0b00010000) + (((copy - 5) >> 6) & 0b00001100) + literal
+b0 = 0b11000000 + ((offset >> 12) & 0b00010000) + (((count - 5) >> 6) & 0b00001100) + literal
 b1 = offset >> 8
 b2 = offset
 b3 = count - 5
@@ -185,15 +193,7 @@ b0 = 0b11111100 + literal
 
 6- Go back to the offset in the decompressed data and copy the number of bytes specified to the end.
 
-Note: The copying in step 6 has to be done one byte at a time, otherwise you will get a problem if the offset is less than the length (The compression allows this).
-
-**The three variables that we need to extract from the control characters are:**
-
-**literal/plain** = The number of bytes to copy from the compressed data as is.
-
-**offset** = The offset in the *decompressed* data to copy the bytes from (i.e. current position - offset).
-
-**count** = The number of bytes to copy from the offset in the *decompressed* data
+Note: The copying in step 6 has to be done one byte at a time, otherwise decompression will be incorrect in cases when the offset is less than the length (The compression allows this).
 
 Typical structure of decompressed data:
 
