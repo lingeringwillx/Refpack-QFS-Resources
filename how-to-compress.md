@@ -12,7 +12,7 @@ Note: In older headers, the uncompressed size is stored in a 3 bytes integer. Th
 
 Note: The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
 
-Note: I have not seen the 0x01 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
+Note: I have not seen the 0b00000001 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
 
 #### Header 1 (90s Games)
 
