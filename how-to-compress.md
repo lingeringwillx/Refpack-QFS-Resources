@@ -10,7 +10,7 @@ Note: 0xFB likely stands for Frank Barchard.
 
 Note: In older headers, the uncompressed size is stored in a 3 bytes integer. The compression algorithm is pretty old so it's likely that they assumed that 3 bytes is enough for storing compressed files.
 
-Note: The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be in big endian.
+Note: The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
 
 Note: I have not seen the 0x01 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
 
