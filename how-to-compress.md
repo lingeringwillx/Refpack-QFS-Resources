@@ -181,7 +181,7 @@ b0 = 0b11111100 + literal
 
 ## Pattern matching
 
-One of the most challenging and most resource intensive tasks in LZ77 compression is the task of finding common long patterns/matches within the file. There isn't one way to achieve this but rather a variety of ways. This is usually achieved by storing the positions/offsets for a combination of bytes in a hash table data structure. We check to see if the table contains the position to the pattern that we are searching for. After that we perform a regular loop to find out if more bytes match. Here are some ways to do this:
+One of the most challenging and most resource intensive tasks in LZ77 compression is the task of finding common long patterns/matches within the file. There isn't one way to achieve this but rather a variety of ways. This is usually achieved by storing the positions/offsets for a combination of bytes in a hash table, and later checking to see if the table contains the position to the pattern that we are searching for. After that we perform a regular loop to find out if more bytes match. Here are some ways to do this:
 
 - [Map/Dictionay](https://github.com/lingeringwillx/CrappySims2Compression/blob/main/practice/map_single.h)
 
