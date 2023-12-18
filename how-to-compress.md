@@ -115,7 +115,7 @@ Subtract the offset by 1 before before doing anything with it. This is a part of
 
 Bit operation are usually done to mask off unrelated bits or shift the values to a specific position. Addition and subtraction are done because they allow the algorithm to encode a few more bytes compared to if it didn't. Addition and subtraction could also be used to switch certain bits on or off.
 
-#### Short
+##### Short
 
 The minimum length for the matching pattern should be 3 (otherwise this compression is not useful).
 
@@ -127,7 +127,7 @@ b0 = ((offset >> 3) & 0b01100000) + ((count - 3) << 2) + literal
 b1 = offset
 ```
 
-#### Medium
+##### Medium
 
 The minimum length for the matching pattern should be 4 (otherwise this compression is not useful).
 
@@ -140,7 +140,7 @@ b1 = (literal << 6) + (offset >> 8)
 b2 = offset
 ```
 
-#### Long
+##### Long
 
 The minimum length for the matching pattern should be 5 (otherwise this compression is not useful).
 
@@ -153,7 +153,8 @@ b1 = offset >> 8
 b2 = offset
 b3 = count - 5
 ```
-#### Literal
+
+##### Literal
 
 Copy as is from the uncompressed data without compression. Can be added multiple times until you're 1-3 bytes behind the location of a match.
 
@@ -166,7 +167,7 @@ Note: This must be a multiple of four due to the 2 bit right shift truncating th
 b0 = 0b11100000 + ((literal - 4) >> 2)
 ```
 
-#### EOF
+##### EOF
 
 Added to the end of the compressed data if you still need to add 1-3 bytes to be copied as is.
 
@@ -203,7 +204,7 @@ When copying plainly: `literals_from_compressed_data  literals_from_compressed_d
 
 Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
 
-#### Short (0x00 - 0x7F)
+##### Short (0x00 - 0x7F)
 
 Has two control characters b0 and b1. Their bits are listed in order below.
 
@@ -217,7 +218,7 @@ count = ((b0 & 0b00011100) >> 2) + 3 //3-11
 offset = ((b0 & 0b01100000) << 3) + b1 + 1 //1-1024
 ```
 
-#### Medium (0x80 - 0xBF)
+##### Medium (0x80 - 0xBF)
 
 Has three control characters.
 
@@ -229,7 +230,7 @@ count = (b0 & 0b00111111) + 4 //4-67
 offset = ((b1 & 0b00111111) << 8) + b2 + 1 //1-16384
 ```
 
-#### Long (0xC0 - 0xDF)
+##### Long (0xC0 - 0xDF)
 
 Has four control characters.
 
@@ -240,7 +241,7 @@ literal = b0 & 0b00000011 //0-3
 count = ((b0 & 0b00001100) << 6) + b3 + 5 //5-1028
 offset = ((b0 & 0b00010000) << 12) + (b1 << 8) + b2 + 1 //1-131072
 ```
-#### Literal (0xE0 - 0xFB)
+##### Literal (0xE0 - 0xFB)
 
 Has only one control character. This one only involves literal/plain copy with no copying from the offset.
 
@@ -252,7 +253,7 @@ count = 0
 offset = 0
 ```
 
-#### EOF (0xFD - 0xFF)
+##### EOF (0xFD - 0xFF)
 
 Has only one control character. This is used for the remaining portion of the compressed data at the end.
 
