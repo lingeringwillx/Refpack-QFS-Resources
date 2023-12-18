@@ -1,18 +1,6 @@
-## How to Compress
+## Compression Header
 
-Various headers for the compressed data have been found in EA's games, but the way to encode and decode the stream is the same throughout all of these games.
-
-Note: Some guides mistakenly claim that SimCity 4 has its own unique encoding. This is wrong.
-
-## Header
-
-Note: 0xFB likely stands for Frank Barchard.
-
-Note: In older headers, the uncompressed size is stored in a 3 bytes integer. The compression algorithm is pretty old so it's likely that they assumed that 3 bytes is enough for storing the uncompressed size.
-
-Note: The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
-
-Note: I have not seen the 0b00000001 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
+Various headers for the RefPack compression algorithm are used in EA's games:
 
 #### Header 1 (90s Games)
 
@@ -77,9 +65,17 @@ if flag 0b10000000 set: 4 bytes uncompressed size (big endian)
 else: 3 bytes uncompressed size (big endian)
 ```
 
-If flag 0b01000000 is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash.
+#### Notes
 
-The flag is usually ignored in modder made implementations of the algorithm. As it doesn't affect decompression, and when compressing a file it's just left unset.
+1- 0xFB likely stands for Frank Barchard.
+
+2- In older headers, the uncompressed size is stored in a 3 bytes integer. The compression algorithm is pretty old so it's likely that they assumed that 3 bytes is enough for storing the uncompressed size.
+
+3- The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
+
+4- I have not seen the 0b00000001 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
+
+5- If flag 0b01000000 is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash. This flag is usually ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
 
 ## Compression
 
@@ -87,7 +83,7 @@ The flag is usually ignored in modder made implementations of the algorithm. As 
 
 Note: For small files, the compressed data could end up being longer than the uncompressed data (header + some control characters + no reduced size from compression). You would need to account for this either by creating an array that's slighty longer than the uncompressed data, or by simply discarding the compressed output and keeping the file uncompressed.
 
-2- Find common patterns within the file. There is a variey of ways to achieve this, but this is commonly done using hash chaining. 
+2- Find common patterns within the file. There is a variey of ways to achieve this, but this is commonly done using hash chaining. [Here is a demonstration of various ways to implement this](https://github.com/lingeringwillx/CrappySims2Compression/blob/main/practice/).
 
 3- Loop over the file and check the pattern in the current location against the previous locations. Find the longest matching pattern, or at least find a match of a good length. The match has to be within the length and offset boundaries specified by the compression algorithm.
 
@@ -102,6 +98,8 @@ Note: For small files, the compressed data could end up being longer than the un
 Typical structure of compressed data: `control_characters literals_from_decompressed_data  control_characters  literals_from_decompressed_data...`
 
 #### Control Characters
+
+Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
 
 **The three variables that we need to encode are:**
 
@@ -179,17 +177,7 @@ Added to the end of the compressed data if you still need to add 1-3 bytes to be
 b0 = 0b11111100 + literal
 ```
 
-## Pattern matching
-
-One of the most challenging and most resource intensive tasks in LZ77 compression is the task of finding common long patterns/matches within the file. There isn't one way to achieve this but rather a variety of ways. This is usually achieved by storing the positions/offsets for a combination of bytes in a hash table, and later checking to see if the table contains the position to the pattern that we are searching for. After that we perform a regular loop to find out if more bytes match. Here are some ways to do this:
-
-- [Map/Dictionay](https://github.com/lingeringwillx/CrappySims2Compression/blob/main/practice/map_single.h)
-
-- [Array](https://github.com/lingeringwillx/CrappySims2Compression/blob/main/practice/map_multi.h)
-
-- [Hash Chain](https://github.com/lingeringwillx/CrappySims2Compression/blob/main/practice/hash_chain.h)
-
-## Decompression:
+## Decompression
 
 1- Create a new array to hold the decompressed data. The size of the decompressed data can be found in the compression header.
 
@@ -212,6 +200,8 @@ When there is an offset copy: `literals_from_compressed_data  bytes_from_offset 
 When copying plainly: `literals_from_compressed_data  literals_from_compressed_data ...`
 
 #### Control Characters:
+
+Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
 
 #### Short (0x00 - 0x7F)
 
