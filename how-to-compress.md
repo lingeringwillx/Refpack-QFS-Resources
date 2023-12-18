@@ -199,7 +199,7 @@ When there is an offset copy: `literals_from_compressed_data  bytes_from_offset 
 
 When copying plainly: `literals_from_compressed_data  literals_from_compressed_data ...`
 
-#### Control Characters:
+#### Control Characters
 
 Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
 
