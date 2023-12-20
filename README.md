@@ -8,7 +8,7 @@ Refpack/QFS is a compression algorithm based on the LZ77/LZSS compression writte
 
 The longer length and offset capacity of the compression slows down the compression, and it doesn't seem to yield a significant improvement in the compressed size, so I don't know why EA didn't just use DEFLATE. It's possible that EA waited until the patent for the DEFLATE algorithm expired before it started using it in its own games.
 
-#### Compression
+#### Resources
 
 [Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression.
 
