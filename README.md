@@ -33,7 +33,7 @@ List of known implementations of the compression algorithm organized by language
 | C++ || [benrg](http://www.moreawesomethanyou.com/smf/index.php/topic,8279.0.html)<br>[lingeringwillx](https://github.com/lingeringwillx/CrappySims2Compression/tree/main/practice) | [OmniBlade](https://github.com/TheAssemblyArmada/Thyme/blob/develop/src/game/common/compression/refpack.cpp)<br>[KUDr](https://github.com/MicaelJarniac/RefPack-Tool)<br>[J.M. Pescado](https://gist.github.com/uyjulian/bd24b98a4c97b775c9ab) |
 | Go | [marcboudreau](https://github.com/marcboudreau/godbpf/blob/master/qfs/qfs.go) |||
 | Java || [java_dwarf](https://github.com/memo33/jDBPFX/blob/master/src/jdbpfx/util/DBPFPackager.java) ||
-| JavaScript | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) ||
+| JavaScript | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) |||
 | Kotlin ||| [DarkAtra](https://github.com/DarkAtra/bfme2-modding-utils/blob/main/refpack/src/main/kotlin/de/darkatra/bfme2/refpack/RefPackInputStream.kt)* |
 | PHP || [Delphy](https://modthesims.info/wiki.php?title=DBPF_Compression#Example_Code)* ||
 | Python || [lah7](https://github.com/lah7/sims2-4k-ui-mod/blob/master/qfs.py)<br>[lingeringwillx](https://github.com/lingeringwillx/sims2lib/blob/main/dbpf.py)** ||
