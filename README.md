@@ -12,8 +12,6 @@ Refpack/QFS is a compression algorithm based on the LZ77/LZSS compression writte
 
 [Explanation of The LZ77/LZSS Compression](https://go-compression.github.io/algorithms/lzss/): Refpack/QFS is based on this compression.
 
-[Interactive LZ77 Encoder/Decoder](https://go-compression.github.io/interactive/lz/lz/)
-
 [Explanation of zlib](https://www.euccas.me/zlib/): zlib is a popular compression library and a lot of the techniques employed in zlib are utilized in Refpack/QFS compression code.
 
 [How to Compress](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md): I try to explain the compression algorithm here.
