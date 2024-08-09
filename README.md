@@ -8,7 +8,7 @@ Refpack/QFS is a compression algorithm based on the LZ77/LZSS compression writte
 
 #### Resources
 
-[Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression.
+[Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression algorithm.
 
 [Explanation of The LZ77/LZSS Compression](https://go-compression.github.io/algorithms/lzss/): Refpack/QFS is based on this compression.
 
