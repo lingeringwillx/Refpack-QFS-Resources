@@ -48,7 +48,7 @@ Found in: Spore, The Sims 3, and The Sims 4
 
 bit 0b10000000: 4 bytes are used for the decompressed size if enabled, 3 bytes are used if disabled
 
-bit 0b01000000: Restricted sliding window (Note: Need to double check this)
+bit 0b01000000: Restricted sliding window size (Note: Need to double check this)
 
 bit 0b00010000: Always set
 
@@ -56,7 +56,7 @@ bit 0b00000001: compressed size added to header
 
 1 byte magic: 0xFB
 
-if flags 0b10000001 set: 4 bytes int compressed size (big endian)
+if flags 0b10000000 and 0b00000001 set: 4 bytes int compressed size (big endian)
 
 else if flag 0b00000001 set: 3 bytes int compressed size (big endian)
 
