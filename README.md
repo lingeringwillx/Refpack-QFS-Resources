@@ -30,7 +30,7 @@ List of known implementations of the compression algorithm organized by language
 | JavaScript | [sebamarynissen](https://github.com/sebamarynissen/qfs-compression) |||
 | Kotlin ||| [DarkAtra](https://github.com/DarkAtra/bfme2-modding-utils/blob/main/refpack/src/main/kotlin/de/darkatra/bfme2/refpack/RefPackInputStream.kt)* |
 | PHP || [Delphy](https://modthesims.info/wiki.php?title=DBPF_Compression#Example_Code)* ||
-| Python | [lingeringwillx](https://gist.github.com/lingeringwillx/9a78841e4e60085c23965e544d58d680) | [lingeringwillx](https://github.com/lingeringwillx/sims2lib/blob/main/dbpf.py)**<br>[lingeringwillx](https://gist.github.com/lingeringwillx/9a78841e4e60085c23965e544d58d680)<br>[lah7](https://github.com/lah7/sims2-4k-ui-mod/blob/master/qfs.py) | [lingeringwillx](https://gist.github.com/lingeringwillx/9a78841e4e60085c23965e544d58d680) |
+| Python | [lingeringwillx](https://gist.github.com/lingeringwillx/9a78841e4e60085c23965e544d58d680) | [lingeringwillx](https://github.com/lingeringwillx/sims2lib/blob/main/dbpf.py)**<br>[lingeringwillx](https://gist.github.com/lingeringwillx/9a78841e4e60085c23965e544d58d680)<br>[lah7](https://github.com/lah7/sims2-4k-ui-patch/blob/master/sims2patcher/qfs.py) | [lingeringwillx](https://gist.github.com/lingeringwillx/9a78841e4e60085c23965e544d58d680) |
 | Rust || [actioninja](https://github.com/actioninja/refpack-rs) | [actioninja](https://github.com/actioninja/refpack-rs) |
 | Scala || [memo33](https://github.com/memo33/scdbpf/blob/master/src/main/scala/scdbpf/internal/QfsCompression.scala) ||
 
