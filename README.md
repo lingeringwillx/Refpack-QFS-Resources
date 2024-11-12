@@ -6,6 +6,8 @@ Resources for those interested in the Refpack/QFS compression algorithm used in 
 
 Refpack/QFS is a compression algorithm based on the LZ77/LZSS compression written by Frank Barchard for use in games made by EA. It can be found in games as early as FIFA International Soccer (1993). The algorithm uses different encoding schemes based on the length and position of the data that's being compressed, which allows it to achieve a higher compression ratio compared to other LZ-based algorithms.
 
+The name QFS comes from a file format used in old Need for Speed games in which this algorithm was used. However, The actual name of the algorithm is RefPack.
+
 #### Resources
 
 [Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression algorithm.
@@ -23,7 +25,7 @@ List of known implementations of the compression algorithm organized by language
 | Language | Header 1 | Header 2 | Header 3 |
 |-|:-:|:-:|:-:|
 | C | [Denis Auroux](https://math.mit.edu/~auroux/software/fshtool.zip) |||
-| C# | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Venomalia](https://github.com/Venomalia/AuroraLib.Compression/blob/main/src/AuroraLib.Compression/Algorithms/RefPack.cs) | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Afr0](https://github.com/riperiperi/FreeSO/blob/master/Other/tools/SimsLib/SimsLib/FAR3/Decompresser.cs)<br>[ambertation](https://github.com/luki122/simpe/blob/master/fullsimpe/SimPe%20Packages/PackedFile.cs) | [Venomalia](https://github.com/Venomalia/AuroraLib.Compression/blob/main/src/AuroraLib.Compression/Algorithms/RefPack.cs)<br>[pljones & Tiger](https://sourceforge.net/p/s3pi/git/ci/master/tree/s3pi/Package/Compression.cs)<br>[gibbed](https://github.com/gibbed/Gibbed.RefPack) |
+| C# | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Venomalia](https://github.com/Venomalia/AuroraLib.Compression/blob/main/src/AuroraLib.Compression/Algorithms/RefPack.cs)<br>[rivit](https://github.com/Killeroo/QFS.net/blob/master/QFS_rivit.cs) | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Afr0](https://github.com/riperiperi/FreeSO/blob/master/Other/tools/SimsLib/SimsLib/FAR3/Decompresser.cs)<br>[ambertation](https://github.com/luki122/simpe/blob/master/fullsimpe/SimPe%20Packages/PackedFile.cs) | [Venomalia](https://github.com/Venomalia/AuroraLib.Compression/blob/main/src/AuroraLib.Compression/Algorithms/RefPack.cs)<br>[pljones & Tiger](https://sourceforge.net/p/s3pi/git/ci/master/tree/s3pi/Package/Compression.cs)<br>[gibbed](https://github.com/gibbed/Gibbed.RefPack) |
 | C++ || [benrg](http://www.moreawesomethanyou.com/smf/index.php/topic,8279.0.html)<br>[lingeringwillx](https://github.com/lingeringwillx/CrappySims2Compression/tree/main/practice) | [OmniBlade](https://github.com/TheAssemblyArmada/Thyme/blob/develop/src/game/common/compression/refpack.cpp)<br>[KUDr](https://github.com/MicaelJarniac/RefPack-Tool)<br>[J.M. Pescado](https://gist.github.com/uyjulian/bd24b98a4c97b775c9ab) |
 | Go | [marcboudreau](https://github.com/marcboudreau/godbpf/blob/master/qfs/qfs.go) |||
 | Java || [java_dwarf](https://github.com/memo33/jDBPFX/blob/master/src/jdbpfx/util/DBPFPackager.java) ||
