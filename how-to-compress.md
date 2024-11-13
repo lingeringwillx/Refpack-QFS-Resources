@@ -105,11 +105,11 @@ Note: Some guides mistakenly claim that SimCity 4 has its own unique encoding. T
 
 The three variables that we need to encode are:
 
-**literal/plain**: The number of bytes to copy from the compressed data when no match is found.
+**literal/plain:** The number of bytes to copy from the compressed data when no match is found.
 
-**offset**: The distance between the two matches. (i.e. current position - match position).
+**offset:** The distance between the two matches. (i.e. current position - match position).
 
-**count**: The length of the match.
+**count:** The length of the match.
 
 #### References
 
