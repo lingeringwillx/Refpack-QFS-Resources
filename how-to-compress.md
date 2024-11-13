@@ -115,7 +115,7 @@ The three variables that we need to encode are:
 
 When a match is found, we simply append a number of bytes indicating the length and offset of the match, as well as the number of literals preceding the match.
 
-The 0-3 literals from the uncompressed data should be appended after the reference.
+The 1-3 literals from the uncompressed data should be appended after the reference.
 
 Subtract the offset by 1 before before doing anything with it. This is a part of the encoding applied to the offset:
 
