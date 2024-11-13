@@ -171,7 +171,7 @@ This can be added multiple times until you're 0-3 bytes behind the location of a
 Note: This must be a multiple of four due to the 2 bit right shift truncating the last two bits.
 
 ```C
-//Bits: 111ppp00
+//Bits: 111ppppp
 // 4 <= literal <= 112, count = 0, offset = 0
 
 b1 = 0b11100000 | ((literal - 4) >> 2)
@@ -263,7 +263,7 @@ A single byte followed by an uncompressed bytes block. They should be copied to 
 ##### Literal (0xE0 - 0xFB)
 
 ```C
-//Bits: 111ppp00
+//Bits: 111ppppp
 
 literal = ((b1 & 0b00011111) << 2) + 4 //4-112
 count = 0
