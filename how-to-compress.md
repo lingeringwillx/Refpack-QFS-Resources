@@ -101,7 +101,7 @@ b- When there is no match, the data is copied from the uncompressed data with no
 
 Bit operation are done to mask off unrelated bits or shift the values to a specific position. Addition and subtraction are done because they allow the algorithm to encode a few more bytes compared to if it didn't. Addition and subtraction could also be used to switch certain bits on or off.
 
-Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
+Note: Some guides mistakenly claim that SimCity 4 has its own unique encoding. This is wrong.
 
 The three variables that we need to encode are:
 
@@ -208,15 +208,15 @@ Note: The copying in step 6 has to be done one byte at a time, otherwise decompr
 
 The value of the first byte indicates the decompression method that should be applied. It is listed in the headers of each of the following sections.
 
-Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
+Note: Some guides mistakenly claim that SimCity 4 has its own unique encoding. This is wrong.
 
 There are two copy modes in RefPack decompression:
 
 #### Offset Copy
 
-1- Copy a few bytes from the compressed based on the decoded number of literals ([Literal Copy](#Literal-Copy)).
+1- Copy a few bytes from the compressed data based on the decoded number of literals ([Literal Copy](#Literal-Copy)).
 
-2- Copy bytes from the specified offset in the data that has already been compressed.
+2- Copy bytes from the *decompressed data* from the specified offset.
 
 ##### Short (0x00 - 0x7F)
 
