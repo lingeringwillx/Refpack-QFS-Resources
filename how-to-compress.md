@@ -67,7 +67,7 @@ else: 3 bytes uncompressed size (big endian)
 
 #### Notes
 
-1- 0xFB likely stands for Frank Barchard.
+1- 0xFB likely stands for Frank Barchard, the developer of the algorithm.
 
 2- In older headers, the uncompressed size is stored in a 3 bytes integer. The compression algorithm is pretty old so it's likely that they assumed that 3 bytes is enough for storing the uncompressed size.
 
@@ -87,33 +87,39 @@ Note: For small files, the compressed data could end up being longer than the un
 
 3- Loop over the file and check the pattern in the current location against the previous locations. Find the longest matching pattern, or at least find a match of a good length. The match has to be within the length and offset boundaries specified by the compression algorithm.
 
-4- Once you found a match, add literal control characters a long with their bytes to the compressed data until you've reached the location of the match, then convert the length and offset of the match to control characters and add them to the compressed output.
+4- There are primarily two modes in Refpack compression:
 
-5- Repeat this until you've added the last match. After that add literal and EOF control characters along with their respective bytes until you reach the end of the uncompressed data.
+a- When a match is found, a number of bytes is appended to the compressed data indicating the length of the match, and the offset from the current position where the match could be found.
+
+b- When there is no match, the data is copied from the uncompressed data with no compression. A byte is appended before the data indicating the length of the data. 
 
 6- Write the compression header to the beginning of the compressed data.
 
 7- Slice the array to the size that you've got after compression.
 
-Typical structure of compressed data: `control_characters literals_from_decompressed_data  control_characters  literals_from_decompressed_data...`
+### Encoding
 
-#### Control Characters
+Bit operation are done to mask off unrelated bits or shift the values to a specific position. Addition and subtraction are done because they allow the algorithm to encode a few more bytes compared to if it didn't. Addition and subtraction could also be used to switch certain bits on or off.
 
 Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
 
-**The three variables that we need to encode are:**
+The three variables that we need to encode are:
 
-**literal/plain** = The number of bytes to copy from the compressed data as is.
+**literal/plain**: The number of bytes to copy from the compressed data when no match is found.
 
-**offset** = The offset in the *decompressed* data to copy the bytes from (i.e. current position - match position).
+**offset**: The distance between the two matches. (i.e. current position - match position).
 
-**count** = The number of bytes to copy from the offset in the *decompressed* data
+**count**: The length of the match.
 
-Subtract the offset by 1 before before doing anything with it. This is a part of the transformations applied to the offset:
+#### References
+
+When a match is found, we simply append a number of bytes indicating the length and offset of the match, as well as the number of literals preceding the match.
+
+The 0-3 literals from the uncompressed data should be appended after the reference.
+
+Subtract the offset by 1 before before doing anything with it. This is a part of the encoding applied to the offset:
 
 `offset = offset - 1`
-
-Bit operation are usually done to mask off unrelated bits or shift the values to a specific position. Addition and subtraction are done because they allow the algorithm to encode a few more bytes compared to if it didn't. Addition and subtraction could also be used to switch certain bits on or off.
 
 ##### Short
 
@@ -123,11 +129,11 @@ The minimum length for the matching pattern should be 3 (otherwise this compress
 //Bits: 0oocccpp oooooooo
 // 0 <= literal <= 3, 3 <= count <= 10, 1 <= offset <= 1024
 
-b0 = ((offset >> 3) & 0b01100000) + ((count - 3) << 2) + literal
-b1 = offset
+b1 = ((offset >> 3) & 0b01100000) | ((count - 3) << 2) | literal
+b2 = offset
 ```
 
-##### Medium
+##### Long
 
 The minimum length for the matching pattern should be 4 (otherwise this compression is not useful).
 
@@ -135,12 +141,12 @@ The minimum length for the matching pattern should be 4 (otherwise this compress
 //Bits: 10cccccc ppoooooo oooooooo
 // 0 <= literal <= 3, 4 <= count <= 67, 1 <= offset <= 16384
 
-b0 = 0b10000000 + (count - 4)
-b1 = (literal << 6) + (offset >> 8)
-b2 = offset
+b1 = 0b10000000 | (count - 4)
+b2 = (literal << 6) | (offset >> 8)
+b3 = offset
 ```
 
-##### Long
+##### Very Long
 
 The minimum length for the matching pattern should be 5 (otherwise this compression is not useful).
 
@@ -148,15 +154,19 @@ The minimum length for the matching pattern should be 5 (otherwise this compress
 //Bits: 110occpp oooooooo oooooooo cccccccc
 // 0 <= literal <= 3, 5 <= count <= 1028, 1 <= offset <= 131072
 
-b0 = 0b11000000 + ((offset >> 12) & 0b00010000) + (((count - 5) >> 6) & 0b00001100) + literal
-b1 = offset >> 8
-b2 = offset
-b3 = count - 5
+b1 = 0b11000000 | ((offset >> 12) & 0b00010000) | (((count - 5) >> 6) & 0b00001100) | literal
+b2 = offset >> 8
+b3 = offset
+b4 = count - 5
 ```
+
+#### Literals
+
+Used when no match is found. A single byte is appended indicating the length of the data, followed by the data itself.
 
 ##### Literal
 
-Copy as is from the uncompressed data without compression. Can be added multiple times until you're 1-3 bytes behind the location of a match.
+This can be added multiple times until you're 0-3 bytes behind the location of a match.
 
 Note: This must be a multiple of four due to the 2 bit right shift truncating the last two bits.
 
@@ -164,103 +174,108 @@ Note: This must be a multiple of four due to the 2 bit right shift truncating th
 //Bits: 111ppp00
 // 4 <= literal <= 112, count = 0, offset = 0
 
-b0 = 0b11100000 + ((literal - 4) >> 2)
+b1 = 0b11100000 | ((literal - 4) >> 2)
 ```
 
 ##### EOF
 
-Added to the end of the compressed data if you still need to add 1-3 bytes to be copied as is.
+Added to the end of the compressed data if you still need to append 1-3 bytes from the uncompressed data.
 
 ```C
 //Bits: Bits: 111111pp
 // 0 <= literal <= 3, count = 0, offset = 0
 
-b0 = 0b11111100 + literal
+b1 = 0b11111100 | literal
 ```
 
 ## Decompression
 
 1- Create a new array to hold the decompressed data. The size of the decompressed data can be found in the compression header.
 
-2- Read the first control character.
+2- Read the first byte (b1 in the code samples below).
 
-3- Read additional control characters based on the value of the first control character
+3- Read additional characters based on the value of the first character (up to three additional bytes depending on the value of the first byte).
 
-4- Use bit operations to get information about the number of bytes to copy as is, the offset, and the number of bytes to copy from the offset.
+4- Use bit operations to get the information about the match length, offset, and literals.
 
-5- Copy the number of bytes specified to be copied as is from the compressed data to the decompressed data.
+5- Copy the number of literals specified from the compressed data to the decompressed data.
 
-6- Go back to the offset in the decompressed data and copy the number of bytes specified.
+6- Go back to the offset specified in the decompressed data and copy the number of bytes specified.
 
-Note: The copying in step 6 has to be done one byte at a time, otherwise decompression will be incorrect in cases when the number of bytes to copy is larger than the offset (The compression allows this).
+Note: The copying in step 6 has to be done one byte at a time, otherwise decompression will be fail in cases when the number of bytes to copy is larger than the offset (The compression algorithm allows this).
 
-Typical structure of decompressed data:
+### Decoding
 
-When there is an offset copy: `literals_from_compressed_data  bytes_from_offset  literals_from_compressed_data  bytes_from_offset...`
-
-When copying plainly: `literals_from_compressed_data  literals_from_compressed_data ...`
-
-#### Control Characters
+The value of the first byte indicates the decompression method that should be applied. It is listed in the headers of each of the following sections.
 
 Note: Some guides mistakenly claim that SimCity 4 has its own unique control character encoding. This is wrong.
 
+There are two copy modes in RefPack decompression:
+
+#### Offset Copy
+
+1- Copy a few bytes from the compressed based on the decoded number of literals ([Literal Copy](#Literal-Copy)).
+
+2- Copy bytes from the specified offset in the data that has already been compressed.
+
 ##### Short (0x00 - 0x7F)
 
-Has two control characters b0 and b1. Their bits are listed in order below.
+Read one additional character.
 
 The following bit operations can be applied to get the numbers that we need:
 
 ```C
 //Bits: 0oocccpp oooooooo
 
-literal = b0 & 0b00000011 //0-3
-count = ((b0 & 0b00011100) >> 2) + 3 //3-11
-offset = ((b0 & 0b01100000) << 3) + b1 + 1 //1-1024
+literal = b1 & 0b00000011 //0-3
+count = ((b1 & 0b00011100) >> 2) + 3 //3-11
+offset = ((b1 & 0b01100000) << 3) + b2 + 1 //1-1024
 ```
 
-##### Medium (0x80 - 0xBF)
+##### Long (0x80 - 0xBF)
 
-Has three control characters.
+Read two additional characters.
 
 ```C
 //Bits: 10cccccc ppoooooo oooooooo
 
-literal = ((b1 & 0b11000000) >> 6 //0-3
-count = (b0 & 0b00111111) + 4 //4-67
-offset = ((b1 & 0b00111111) << 8) + b2 + 1 //1-16384
+literal = ((b2 & 0b11000000) >> 6 //0-3
+count = (b1 & 0b00111111) + 4 //4-67
+offset = ((b2 & 0b00111111) << 8) + b3 + 1 //1-16384
 ```
 
-##### Long (0xC0 - 0xDF)
+##### Very Long (0xC0 - 0xDF)
 
-Has four control characters.
+Read three additional characters.
 
 ```C
 //Bits: 110occpp oooooooo oooooooo cccccccc
 
-literal = b0 & 0b00000011 //0-3
-count = ((b0 & 0b00001100) << 6) + b3 + 5 //5-1028
-offset = ((b0 & 0b00010000) << 12) + (b1 << 8) + b2 + 1 //1-131072
+literal = b1 & 0b00000011 //0-3
+count = ((b1 & 0b00001100) << 6) + b4 + 5 //5-1028
+offset = ((b1 & 0b00010000) << 12) + (b2 << 8) + b3 + 1 //1-131072
 ```
-##### Literal (0xE0 - 0xFB)
 
-Has only one control character. This one only involves literal/plain copy with no copying from the offset.
+#### Literal Copy
+
+A single byte followed by an uncompressed bytes block. They should be copied to the decompressed data.
+
+##### Literal (0xE0 - 0xFB)
 
 ```C
 //Bits: 111ppp00
 
-literal = ((b0 & 0b00011111) << 2) + 4 //4-112
+literal = ((b1 & 0b00011111) << 2) + 4 //4-112
 count = 0
 offset = 0
 ```
 
 ##### EOF (0xFD - 0xFF)
 
-Has only one control character. This is used for the remaining portion of the compressed data at the end.
-
 ```C
 //Bits: Bits: 111111pp
 
-literal = b0 & 0b00000011 //0-3
+literal = b1 & 0b00000011 //0-3
 copy = 0
 offset = 0
 ```
