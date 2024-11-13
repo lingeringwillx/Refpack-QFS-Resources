@@ -75,7 +75,7 @@ else: 3 bytes uncompressed size (big endian)
 
 4- I have not seen the 0b00000001 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
 
-5- If flag 0b01000000 is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash. This flag is usually ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
+5- If flag 0b01000000 is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash. This flag is typically ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
 
 ## Compression
 
@@ -93,9 +93,9 @@ a- When a match is found, a number of bytes is appended to the compressed data i
 
 b- When there is no match, the data is copied from the uncompressed data with no compression. A byte is appended before the data indicating the length of the data. 
 
-6- Write the compression header to the beginning of the compressed data.
+5- Write the compression header to the beginning of the compressed data.
 
-7- Slice the array to the size that you've got after compression.
+6- Slice the array to the size that you've got after compression.
 
 ### Encoding
 
