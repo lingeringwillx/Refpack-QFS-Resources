@@ -20,7 +20,7 @@ The name QFS comes from a file format used in old Need for Speed games in which 
 
 #### Implementations
 
-List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md#compression-header) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
+List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/HEADERS.md) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
 
 | Language | Header 1 | Header 2 | Header 3 |
 |-|:-:|:-:|:-:|

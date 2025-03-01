@@ -18,7 +18,7 @@ if flag 0b00000001 set: 3 bytes int compressed size (big endian)
 3 bytes int uncompressed size (big endian)
 ```
 
-Alternative algorithms could be used in place of Refpack depending on the flags. Such as Huffman Encoding, Byte-Pair Encoding, and Run-Length Encoding. For more informations:
+Alternative algorithms could be used in place of Refpack depending on the flags. Such as Huffman Encoding, Byte-Pair Encoding, and Run-Length Encoding. For more information:
 
 1- [Martin Korth](https://problemkaputt.de/psxspx-cdrom-file-compression-ea-methods.htm)
 
