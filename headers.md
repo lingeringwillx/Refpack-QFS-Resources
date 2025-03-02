@@ -70,6 +70,6 @@ else: 3 bytes uncompressed size (big endian)
 
 3- The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
 
-4- I have not seen the 0b00000001 flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
+4- I have not seen the `0b00000001` flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
 
-5- If flag 0b01000000 is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash. This flag is typically ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
+5- If flag `0b01000000` is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash. This flag is typically ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
