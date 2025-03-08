@@ -12,7 +12,7 @@ The name QFS comes from a file format used in old Need for Speed games in which 
 
 [Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression algorithm.
 
-[Explanation of The LZ77/LZSS Compression](https://go-compression.github.io/algorithms/lzss/): Refpack is based on the LZ77 compression algorithm.
+[Explanation of LZ77/LZSS Compression](https://go-compression.github.io/algorithms/lzss/): Refpack is based on the LZ77 compression algorithm.
 
 [Explanation of zlib](https://www.euccas.me/zlib/): zlib is a popular compression library and a lot of the techniques employed in zlib are utilized in Refpack compression code.
 
