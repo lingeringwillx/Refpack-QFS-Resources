@@ -16,8 +16,6 @@ The name QFS comes from a file format used in old Need for Speed games in which 
 
 [Explanation of zlib](https://www.euccas.me/zlib/): zlib is a popular compression library and a lot of the techniques employed in zlib are utilized in Refpack compression code.
 
-[How to Compress](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/how-to-compress.md): I try to explain the compression algorithm here.
-
 #### Implementations
 
 List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/headers.md) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
