@@ -1,14 +1,14 @@
-## Refpack/QFS Resources
+### Refpack/QFS Resources
 
 Resources for those interested in the Refpack/QFS compression algorithm used in many EA games. Also maintains links to known implementations of the compression for easy reference.
 
-### About
+#### About
 
 RefPack is a compression algorithm based on the LZ77/LZSS compression written by Frank Barchard for use in games made by EA[^1]. It can be found in games as early as FIFA International Soccer (1993)[^2]. The algorithm uses different encoding schemes based on the length and position of the data that's being compressed, which allows it to achieve a higher compression ratio compared to other LZ-based algorithms[^1].
 
 The name QFS comes from a file format used in old Need for Speed games in which this algorithm was used. However, the actual name of the algorithm is RefPack[^1].
 
-### Resources
+#### Resources
 
 [Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression algorithm.
 
@@ -18,7 +18,7 @@ The name QFS comes from a file format used in old Need for Speed games in which 
 
 [Explanation of zlib](https://www.euccas.me/zlib/): zlib is a popular compression library and a lot of the techniques employed in zlib are utilized in Refpack compression code.
 
-### Implementations
+#### Implementations
 
 List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/headers.md) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
 

@@ -1,8 +1,8 @@
-## Headers
+### Headers
 
 Various headers for the RefPack compression algorithm could be found in EA's games:
 
-### EAC
+#### EAC
 
 ```
 1 byte flags:
@@ -34,7 +34,7 @@ For old 90's titles, alternative algorithms could be used in place of Refpack de
 
 3. [Stunts Wiki](https://wiki.stunts.hu/wiki/Compression#EAC_packing)
 
-### Maxis
+#### Maxis
 
 In the early to mid 2000's, Maxis deviated from the standard by adding the compressed size before the flags and magic character.
 
