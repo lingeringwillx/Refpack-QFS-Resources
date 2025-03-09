@@ -56,8 +56,8 @@ In the early to mid 2000's, Maxis deviated from the standard header by adding th
 
 4- I have not seen the `0b00000001` flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
 
-5- If flag `0b01000000` is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash. This flag is typically ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
+5- If flag `0b01000000` is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash[^2]. This flag is typically ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
 
-[^1] [Command and Conquer: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp)
+[^1]: [Command and Conquer: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp)
 
-[^2] [SimsWiki](https://simswiki.info/wiki.php?title=Sims_3:DBPF/Compression)
+[^2]: [SimsWiki](https://simswiki.info/wiki.php?title=Sims_3:DBPF/Compression)
