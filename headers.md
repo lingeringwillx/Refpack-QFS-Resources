@@ -1,4 +1,4 @@
-## Compression Headers
+## Headers
 
 Various headers for the RefPack compression algorithm could be found in EA's games:
 
@@ -28,7 +28,7 @@ else: 3 bytes uncompressed size (big endian)
 
 For old 90's titles, alternative algorithms could be used in place of Refpack depending on the flags. This includes Huffman Encoding, Byte-Pair Encoding, and Run-Length Encoding. For more information:
 
-1- [C&C: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/tree/main/Generals/Code/Libraries/Source/Compression/EAC)
+1- [C&C: Generals Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/tree/main/Generals/Code/Libraries/Source/Compression/EAC)
 
 2- [Martin Korth](https://problemkaputt.de/psxspx-cdrom-file-compression-ea-methods.htm)
 
