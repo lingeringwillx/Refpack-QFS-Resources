@@ -1,6 +1,6 @@
-### Refpack/QFS Resources
+### RefPack/QFS Resources
 
-Resources for those interested in the Refpack/QFS compression algorithm used in many EA games. Also maintains links to known implementations of the compression for easy reference.
+Resources for those interested in the RefPack/QFS compression algorithm used in many EA games. Also maintains links to known implementations of the compression for easy reference.
 
 #### About
 
@@ -14,13 +14,13 @@ The name QFS comes from a file format used in old Need for Speed games in which 
 
 [Source Code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp): Official source code released by EA as part of the public release of Command and Conquers: Generals - Zero Hour source code.
 
-[Explanation of LZ77/LZSS Compression](https://go-compression.github.io/algorithms/lzss/): Refpack is based on the LZ77 compression algorithm.
+[Explanation of LZ77/LZSS Compression](https://go-compression.github.io/algorithms/lzss/): RefPack is based on the LZ77 compression algorithm.
 
-[Explanation of zlib](https://www.euccas.me/zlib/): zlib is a popular compression library and a lot of the techniques employed in zlib are utilized in Refpack compression code.
+[Explanation of zlib](https://www.euccas.me/zlib/): zlib is a popular compression library and a lot of the techniques employed in zlib are utilized in RefPack compression code.
 
 #### Implementations
 
-List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/headers.md) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
+List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/RefPack-QFS-Resources/blob/main/headers.md) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
 
 | Language/Header | EAC | Maxis | EAC (w/ 32-bit size) |
 |-|:-:|:-:|:-:|
@@ -40,6 +40,6 @@ List of known implementations of the compression algorithm organized by language
 
 \*\*C Bindings
 
-[^1]: [Command and Conquer: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp)
+[^1]: [Command and Conquer: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC)
 
 [^2]: [Sega Retro](https://segaretro.org/RefPack_compression)

@@ -26,7 +26,7 @@ if flag 0b10000000 set: 4 bytes uncompressed size (big endian)
 else: 3 bytes uncompressed size (big endian)
 ```
 
-For old 90's titles, alternative algorithms could be used in place of Refpack depending on the flags. This includes Huffman Encoding, Byte-Pair Encoding, and Run-Length Encoding. For more information:
+For old 90's titles, alternative algorithms could be used in place of RefPack depending on the flags. This includes Huffman Encoding, Byte-Pair Encoding, and Run-Length Encoding. For more information:
 
 1. [C&C: Generals Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/tree/main/Generals/Code/Libraries/Source/Compression/EAC)
 
@@ -36,7 +36,7 @@ For old 90's titles, alternative algorithms could be used in place of Refpack de
 
 #### Maxis
 
-In the early to mid 2000's, Maxis deviated from the standard by adding the compressed size before the flags and magic character.
+In the early to mid 2000's, Maxis deviated from the standard by adding the compressed size before the flags and magic character. Later Maxis games use the regular header.
 
 ```
 4 bytes int compressed size (little endian)
@@ -50,14 +50,14 @@ In the early to mid 2000's, Maxis deviated from the standard by adding the compr
 
 - 0xFB likely stands for Frank Barchard, the developer of the algorithm.
 
-- According to EA's source code, the flag `0b10000000` was added in 2001[^1]. Older titles are limited to 3 bytes for the uncompressed size in the header, and so the maximum size of the resources that they can compress is 16 MB.
+- According to EA's source code, the flag `0b10000000` was added in 2001[^1]. Older titles are limited to 3 bytes for the uncompressed size in the header, and so the maximum size of the resources that they can compress is limited to 16 MB.
 
 - The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
 
-- I have not seen the `0b00000001` flag in any game files. It's likely never or rarely used. However, reverse engineering efforts did show that the algorithm supports this flag.
+- I have not seen the `0b00000001` flag in any game files. It's likely never or rarely used. EA's source code shows that the decompressor supports this flag. However, the compressor doesn't produce any assets with the flag[^1].
 
 - If flag `0b01000000` is set, then the maximum offset is limited to a specific value, exceeding this value might cause the game to crash[^2]. This flag is typically ignored in modder made implementations of the algorithm as it doesn't affect decompression, and when compressing a file it's just left unset.
 
-[^1]: [Command and Conquer: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp)
+[^1]: [Command and Conquer: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC)
 
 [^2]: [SimsWiki](https://simswiki.info/wiki.php?title=Sims_3:DBPF/Compression)
