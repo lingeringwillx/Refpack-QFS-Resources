@@ -28,7 +28,7 @@ else: 3 bytes uncompressed size (big endian)
 
 For old 90's titles, alternative algorithms could be used in place of RefPack depending on the flags. This includes Huffman Encoding, Byte-Pair Encoding, and Run-Length Encoding. For more information:
 
-1. [C&C: Generals source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/tree/main/Generals/Code/Libraries/Source/Compression/EAC)
+1. [C&C Generals source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/tree/main/Generals/Code/Libraries/Source/Compression/EAC)
 
 2. [Martin Korth](https://problemkaputt.de/psxspx-cdrom-file-compression-ea-methods.htm)
 
