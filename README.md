@@ -40,6 +40,6 @@ List of known implementations of the compression algorithm organized by language
 
 \*\*C Bindings
 
-[^1]: [Command and Conquer: Generals - Zero Hour source code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC)
+[^1]: [C&C Generals source code: refabout.cpp](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp)
 
 [^2]: [Sega Retro](https://segaretro.org/RefPack_compression)
