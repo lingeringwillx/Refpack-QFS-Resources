@@ -12,7 +12,7 @@ The name QFS comes from a file format used in old Need for Speed games in which 
 
 [Niotso Wiki](http://wiki.niotso.org/RefPack): Generic information on the compression algorithm.
 
-[Source Code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC/refabout.cpp): Official source code released by EA as a part of the public release of the source code of Command and Conquers: Generals - Zero Hour.
+[Source Code](https://github.com/electronicarts/CnC_Generals_Zero_Hour/blob/main/Generals/Code/Libraries/Source/Compression/EAC): Official source code released by EA as a part of the public release of the source code of Command and Conquers: Generals - Zero Hour.
 
 [Explanation of LZ77/LZSS Compression](https://go-compression.github.io/algorithms/lzss/): RefPack is based on the LZ77 compression algorithm.
 
