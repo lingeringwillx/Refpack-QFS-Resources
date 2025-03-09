@@ -20,7 +20,7 @@ The name QFS comes from a file format used in old Need for Speed games in which 
 
 List of known implementations of the compression algorithm organized by language and [compression header](https://github.com/lingeringwillx/Refpack-QFS-Resources/blob/main/headers.md) for easy reference. A lot of those are rewrites of the same code in another programming language. The quality varies from one implementation to another.
 
-| Language/Header | EAC | Maxis | EAC (with 32-bit size) |
+| Language/Header | EAC | Maxis | EAC (w/ 32-bit size) |
 |-|:-:|:-:|:-:|
 | C | [Denis Auroux](https://math.mit.edu/~auroux/software/fshtool.zip) |||
 | C# | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Venomalia](https://github.com/Venomalia/AuroraLib.Compression/blob/main/src/AuroraLib.Compression/Algorithms/RefPack.cs)<br>[rivit](https://github.com/Killeroo/QFS.net/blob/master/QFS_rivit.cs) | [0xC0000054](https://github.com/0xC0000054/DBPFSharp/blob/main/src/DBPFSharp/QfsCompression.cs)<br>[Venomalia](https://github.com/Venomalia/AuroraLib.Compression/blob/main/src/AuroraLib.Compression/Algorithms/RefPack.cs)<br>[Afr0](https://github.com/riperiperi/FreeSO/blob/master/Other/tools/SimsLib/SimsLib/FAR3/Decompresser.cs)<br>[ambertation](https://github.com/luki122/simpe/blob/master/fullsimpe/SimPe%20Packages/PackedFile.cs) | [Venomalia](https://github.com/Venomalia/AuroraLib.Compression/blob/main/src/AuroraLib.Compression/Algorithms/RefPack.cs)<br>[GlitcherOG](https://github.com/GlitcherOG/SSX-Collection-Multitool/blob/main/FileHandlers/RefpackHandler.cs)<br>[pljones & Tiger](https://sourceforge.net/p/s3pi/git/ci/master/tree/s3pi/Package/Compression.cs)<br>[gibbed](https://github.com/gibbed/Gibbed.RefPack) |
