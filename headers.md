@@ -50,7 +50,7 @@ In the early to mid 2000's, Maxis deviated from the standard by adding the compr
 
 - 0xFB likely stands for Frank Barchard, the developer of the algorithm.
 
-- According to EA's source code, the flag `0b10000000` was added in 2001[^1]. Older titles are limited to 3 bytes for the uncompressed size in the header, and so the maximum size of the resources that it can compress is 16 MB.
+- According to EA's source code, the flag `0b10000000` was added in 2001[^1]. Older titles are limited to 3 bytes for the uncompressed size in the header, and so the maximum size of the resources that they can compress is 16 MB.
 
 - The uncompressed size is stored in big endian even in games that natively use little endian. It's possible that the algorithm's standard specifies that it should be like this.
 
